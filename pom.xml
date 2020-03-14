@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.findwise</groupId>
-    <artifactId>searchengine</artifactId>
+    <artifactId>search-engine</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>searchengine</name>
-    <description>Demo project for Spring Boot</description>
+    <name>search-engine</name>
+    <description>Search engine implemented as an inverted index</description>
 
     <properties>
         <java.version>11</java.version>
