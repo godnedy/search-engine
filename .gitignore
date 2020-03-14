@@ -1,0 +1,22 @@
+# Intellij Idea related file
+.idea
+*.iml
+*.mv.db
+atlassian-ide-plugin.xml
+
+# Eclipse
+.settings
+.project
+.classpath
+
+# maven generated files
+.repository
+**/target/*
+!**/rates/target/*
+
+# Utility files
+*.log
+*.patch
+
+# Mac OS
+*.DS_Store
