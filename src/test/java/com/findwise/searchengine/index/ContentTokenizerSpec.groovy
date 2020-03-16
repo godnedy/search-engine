@@ -1,14 +1,14 @@
-package com.findwise.searchengine.tokenizer
+package com.findwise.searchengine.index
 
 import opennlp.tools.tokenize.SimpleTokenizer
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
 
-class TokenizerServiceSpec extends Specification {
+class ContentTokenizerSpec extends Specification {
 
     @Subject
-    TokenizerService tokenizer = new TokenizerService(SimpleTokenizer.INSTANCE)
+    ContentTokenizer tokenizer = new ContentTokenizer(SimpleTokenizer.INSTANCE)
 
 
     @Unroll

@@ -1,12 +1,13 @@
-package com.findwise.searchengine.tokenizer;
+package com.findwise.searchengine.index;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class WeightedToken {
+class DocumentIdWithTF {
+
     @NonNull
-    public final String term;
+    public final String documentId;
     @NonNull
     public final double tf;
 }

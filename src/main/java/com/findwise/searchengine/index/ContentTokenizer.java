@@ -1,4 +1,4 @@
-package com.findwise.searchengine.tokenizer;
+package com.findwise.searchengine.index;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class TokenizerService {
+public class ContentTokenizer {
 
     private final Tokenizer tokenizer;
 
