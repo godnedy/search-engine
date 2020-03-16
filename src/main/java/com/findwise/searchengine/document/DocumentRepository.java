@@ -1,4 +1,4 @@
-package com.findwise.searchengine.index;
+package com.findwise.searchengine.document;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

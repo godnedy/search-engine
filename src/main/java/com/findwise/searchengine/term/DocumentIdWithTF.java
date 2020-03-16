@@ -1,4 +1,4 @@
-package com.findwise.searchengine.index;
+package com.findwise.searchengine.term;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 class DocumentIdWithTF {
 
     @NonNull
-    public final String documentId;
+    public final Long documentId;
     @NonNull
     public final double tf;
 }

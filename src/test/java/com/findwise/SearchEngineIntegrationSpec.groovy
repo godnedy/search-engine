@@ -17,9 +17,9 @@ class SearchEngineIntegrationSpec extends Specification {
     def "search returns proper list of documents for #query query"() {
         given:
             def documents = documentsToBeIndexed()
-            searchEngine.indexDocument(documents.get(0).id, documents.get(0).content)
-            searchEngine.indexDocument(documents.get(1).id, documents.get(1).content)
-            searchEngine.indexDocument(documents.get(2).id, documents.get(2).content)
+            searchEngine.indexDocument(documents.get(0).name, documents.get(0).content)
+            searchEngine.indexDocument(documents.get(1).name, documents.get(1).content)
+            searchEngine.indexDocument(documents.get(2).name, documents.get(2).content)
         when:
             def result = searchEngine.search()
             def expectedResult = Arrays.asList(expectedDocuments.split(","))

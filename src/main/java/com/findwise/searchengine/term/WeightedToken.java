@@ -1,4 +1,4 @@
-package com.findwise.searchengine.index;
+package com.findwise.searchengine.term;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

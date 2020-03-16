@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 public class Document {
 
     @NonNull
-    public final String id;
+    public final String name;
     @NonNull
     public final String content;
 }

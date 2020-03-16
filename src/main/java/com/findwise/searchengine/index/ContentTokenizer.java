@@ -5,18 +5,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.findwise.searchengine.term.WeightedToken;
 import lombok.RequiredArgsConstructor;
 import opennlp.tools.tokenize.Tokenizer;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class ContentTokenizer {
+class ContentTokenizer {
 
     private final Tokenizer tokenizer;
 
 
-    public List<WeightedToken> tokenize(String content) {
+    List<WeightedToken> tokenize(String content) {
         String contentWithLettersAndSpaceOnly = removeUnwantedCharacters(content);
         String[] tokens = tokenizer.tokenize(contentWithLettersAndSpaceOnly);
         return calculateTermFrequency(tokens);

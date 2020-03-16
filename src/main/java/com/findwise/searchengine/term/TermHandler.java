@@ -1,4 +1,4 @@
-package com.findwise.searchengine.index;
+package com.findwise.searchengine.term;
 
 import java.util.LinkedList;
 import java.util.Optional;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-class TermHandler { //TODO maybe service?
+public class TermHandler { //TODO maybe service?
 
     private final TermRepository termRepository;
 
-    void updateTerm(WeightedToken token, String documentId) {
-        Optional<Term> term = termRepository.findById(token.term);
+    public void updateTerm(WeightedToken token, Long documentId) {
+        Optional<Term> term = termRepository.findFirstByTerm(token.term);
         if (term.isPresent()) {
             Term existingTerm = term.get();
             existingTerm.addDocumentIdWithTf(new DocumentIdWithTF(documentId, token.tf));
@@ -23,7 +23,7 @@ class TermHandler { //TODO maybe service?
         }
     }
 
-    private void createTerm(WeightedToken token, String documentId) {
+    private void createTerm(WeightedToken token, Long documentId) {
         LinkedList<DocumentIdWithTF> list = new LinkedList<>();
         list.add(new DocumentIdWithTF(documentId, token.tf));
         termRepository.save(new Term(token.term, list));
