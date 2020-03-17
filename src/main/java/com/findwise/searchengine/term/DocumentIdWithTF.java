@@ -4,10 +4,10 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-class DocumentIdWithTF {
+public class DocumentIdWithTF {
 
     @NonNull
-    public final Long documentId;
+    public final String documentId;
     @NonNull
     public final double tf;
 }

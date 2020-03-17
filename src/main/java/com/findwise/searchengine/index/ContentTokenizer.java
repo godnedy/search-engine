@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.findwise.searchengine.term.WeightedToken;
 import lombok.RequiredArgsConstructor;
 import opennlp.tools.tokenize.Tokenizer;
 import org.springframework.stereotype.Service;

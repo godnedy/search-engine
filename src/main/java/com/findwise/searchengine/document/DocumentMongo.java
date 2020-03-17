@@ -1,23 +1,22 @@
 package com.findwise.searchengine.document;
 
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @RequiredArgsConstructor
 @Document("document")
 class DocumentMongo {
 
+    @Indexed() // ?
     @Id
-    private long id;
+    public final String id;
 
-    final String documentName;
+    public final String documentContent;
 
-    final String documentContent;
-
-    Long getId() {
+    String getId() {
         return this.id;
     }
 }

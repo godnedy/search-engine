@@ -29,6 +29,8 @@ class ContentTokenizerSpec extends Specification {
             "hello ? "      ||  1
             "."             ||  0
             ".?"            ||  0
+            "hello hello there" ||  2
+
     }
 
 

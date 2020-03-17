@@ -1,6 +1,5 @@
 package com.findwise.searchengine;
 
-
 import java.io.IOException;
 
 import com.mongodb.MongoClient;

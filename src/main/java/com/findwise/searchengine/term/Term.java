@@ -14,8 +14,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Term {
 
     @Id
-    private long id;
-
     @Indexed(unique = true)
     private final String term;
 
