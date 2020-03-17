@@ -1,6 +1,8 @@
-package com.findwise;
+package com.findwise.searchengine.engine;
 
 import java.util.List;
+
+import com.findwise.searchengine.search.IndexEntry;
 
 public interface SearchEngine {
 

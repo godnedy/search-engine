@@ -3,21 +3,21 @@ package com.findwise.searchengine.term
 import spock.lang.Specification
 import spock.lang.Subject
 
-class TermFinderSpec extends Specification {
+class TermDocumentFinderSpec extends Specification {
 
-    private final static String TERM = "term"
+    private final static String TERM = "termValue"
 
     def termRepository = Mock(TermRepository)
 
     @Subject
-    TermFinder termFinder
+    TermService termService
 
     def "getDocuments returns a list of DocumentIdsWithTf assigned to term" () {
         given:
-            termFinder = new TermFinder(termRepository)
-            termRepository.findFirstByTerm(TERM) >> existingTermWithDocuments()
+            termService = new TermService(termRepository)
+            termRepository.findFirstByTermValue(TERM) >> existingTermWithDocuments()
         when:
-            List<DocumentIdWithTF> result = termFinder.getDocuments(TERM)
+            List<DocumentIdWithTF> result = termService.getDocuments(TERM)
         then:
             result.size() == 2
             result.get(0).documentId == "Id1"
@@ -28,10 +28,10 @@ class TermFinderSpec extends Specification {
 
     def "getDocuments returns empty list if no term found" () {
         given:
-            termFinder = new TermFinder(termRepository)
-            termRepository.findFirstByTerm(TERM) >> Optional.empty()
+            termService = new TermService(termRepository)
+            termRepository.findFirstByTermValue(TERM) >> Optional.empty()
         when:
-            List<DocumentIdWithTF> result = termFinder.getDocuments(TERM)
+            List<DocumentIdWithTF> result = termService.getDocuments(TERM)
         then:
             result.size() == 0
     }
@@ -40,6 +40,6 @@ class TermFinderSpec extends Specification {
         LinkedList<DocumentIdWithTF> documents = new LinkedList<>()
         documents.add(new DocumentIdWithTF("Id1", 0.1d))
         documents.add(new DocumentIdWithTF("Id2", 0.2d))
-        return Optional.of(new Term(TERM, documents))
+        return Optional.of(new TermDocument(TERM, documents))
     }
 }

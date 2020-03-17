@@ -4,10 +4,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.findwise.IndexEntry;
-import com.findwise.searchengine.document.DocumentFinder;
+import com.findwise.searchengine.document.DocumentService;
 import com.findwise.searchengine.term.DocumentIdWithTF;
-import com.findwise.searchengine.term.TermFinder;
+import com.findwise.searchengine.term.TermService;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -17,35 +16,28 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-class SearchService {
+public class SearchService {
 
-    private final DocumentFinder documentFinder;
+    private final DocumentService documentService;
 
-    private final TermFinder termFinder;
+    private final TermService termService;
 
     public List<IndexEntry> search(String query) {
-        List<DocumentIdWithTF> documentIdsWithTF = termFinder.getDocuments(query);
+        List<DocumentIdWithTF> documentIdsWithTF = termService.getDocuments(query);
         int df = documentIdsWithTF.size();
-        long totalNumberOfDocuments = documentFinder.getTotalNumberOfIndexedDocuments();
+        long totalNumberOfDocuments = documentService.getTotalNumberOfIndexedDocuments();
         return documentIdsWithTF.stream()
                 .map(doc -> createIndexEntry(doc, df, totalNumberOfDocuments))
                 .sorted(new SortByScore())
                 .collect(Collectors.toList());
-
     }
 
     private IndexEntry createIndexEntry(DocumentIdWithTF documentIdWithTF, int df, long totalNumberOfDocuments) {
         IndexEntry indexEntry = new IndexEntryImpl();
-        indexEntry.setScore(calculateTfIdf(documentIdWithTF.tf, df, totalNumberOfDocuments));
+        indexEntry.setScore(ScoreCalculator.calculateTfIdf(documentIdWithTF.tf, df, totalNumberOfDocuments));
         indexEntry.setId(documentIdWithTF.documentId);
         return indexEntry;
     }
-
-    private double calculateTfIdf(double tf, int df, long totalNumberOfDocuments) {
-        double idf = Math.log((double) totalNumberOfDocuments / (df+1));
-        return tf * idf;
-    }
-
 
     @Setter
     @Getter
@@ -53,7 +45,6 @@ class SearchService {
     private class IndexEntryImpl implements IndexEntry {
 
         private String id;
-
         private double score;
 
     }
@@ -61,7 +52,7 @@ class SearchService {
     private class SortByScore implements Comparator<IndexEntry> {
         @Override
         public int compare(IndexEntry a, IndexEntry b) {
-            return Double.compare(a.getScore(), b.getScore());
+            return Double.compare(b.getScore(), a.getScore());
         }
     }
 

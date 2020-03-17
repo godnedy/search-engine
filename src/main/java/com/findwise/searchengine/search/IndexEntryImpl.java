@@ -1,6 +1,5 @@
-package com.findwise.searchengine.model;
+package com.findwise.searchengine.search;
 
-import com.findwise.IndexEntry;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

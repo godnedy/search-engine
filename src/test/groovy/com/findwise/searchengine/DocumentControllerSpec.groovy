@@ -1,6 +1,6 @@
 package com.findwise.searchengine.controller
 
-import com.findwise.SearchEngine
+import com.findwise.searchengine.engine.SearchEngine
 import com.findwise.searchengine.DocumentController
 import com.findwise.searchengine.IndexDocumentRequest
 import spock.lang.Specification
@@ -19,7 +19,7 @@ class DocumentControllerSpec extends Specification {
             def request = new IndexDocumentRequest("id", "content")
 
         when:
-            def response = controller.createDocumentEntry(request)
+            def response = controller.indexDocument(request)
 
         then:
             1 * searchEngine.indexDocument(*_)
@@ -28,7 +28,7 @@ class DocumentControllerSpec extends Specification {
 
     def "should call searchService while looking for a term"() {
         given:
-            def term = "term"
+            def term = "termValue"
         when:
             def response = controller.getDocumentList(term)
         then:

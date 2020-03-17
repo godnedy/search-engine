@@ -1,7 +1,7 @@
-package com.findwise.searchengine.search;
+package com.findwise.searchengine.engine;
 
-import com.findwise.SearchEngine;
 import com.findwise.searchengine.index.IndexingService;
+import com.findwise.searchengine.search.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.Delegate;
 import org.springframework.stereotype.Service;

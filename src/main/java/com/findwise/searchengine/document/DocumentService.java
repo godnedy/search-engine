@@ -5,13 +5,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class DocumentHandler {
+public class DocumentService {
 
     private final DocumentRepository documentRepository;
 
     public String saveDocument(String id, String content) {
-        DocumentMongo mongo = new DocumentMongo(id, content);
+        DocDocument mongo = new DocDocument(id, content);
         return documentRepository.save(mongo).getId();
     }
+
+    public long getTotalNumberOfIndexedDocuments() {
+        return documentRepository.count();
+    }
+
+    public boolean exists(String id) {
+        return documentRepository.existsById(id);
+    }
+
 
 }

@@ -1,4 +1,4 @@
-package com.findwise;
+package com.findwise.searchengine.search;
 
 public interface IndexEntry {
 

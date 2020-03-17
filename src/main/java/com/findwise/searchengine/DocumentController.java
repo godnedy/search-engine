@@ -1,6 +1,6 @@
 package com.findwise.searchengine;
 
-import com.findwise.SearchEngine;
+import com.findwise.searchengine.engine.SearchEngine;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +19,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RequestMapping("/documents")
 public class DocumentController {
 
+
     private final SearchEngine searchEngine;
 
     @GetMapping(path = "/{term}")
@@ -27,7 +28,7 @@ public class DocumentController {
     }
 
     @PostMapping
-    public ResponseEntity createDocumentEntry(@RequestBody @Validated IndexDocumentRequest request) {
+    public ResponseEntity indexDocument(@RequestBody @Validated IndexDocumentRequest request) {
         searchEngine.indexDocument(request.getId(), request.getContent());
         return new ResponseEntity(CREATED);
     }

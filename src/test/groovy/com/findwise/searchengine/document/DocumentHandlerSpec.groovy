@@ -11,12 +11,12 @@ class DocumentHandlerSpec extends Specification {
     def documentRepository = Mock(DocumentRepository)
 
     @Subject
-    DocumentHandler documentHandler
+    DocumentService documentHandler
 
     def "saveDocument savesDocument in repository" () {
         given:
-            documentHandler = new DocumentHandler(documentRepository)
-            def returnedObject = new DocumentMongo(ID, "bar")
+            documentHandler = new DocumentService(documentRepository)
+            def returnedObject = new DocDocument(ID, "bar")
         when:
             documentHandler.saveDocument("name1", "content1")
         then:
@@ -25,8 +25,8 @@ class DocumentHandlerSpec extends Specification {
 
     def "saveDocument returns id of saved document" () {
         given:
-            documentHandler = new DocumentHandler(documentRepository)
-            def returnedObject = new DocumentMongo(ID, "bar")
+            documentHandler = new DocumentService(documentRepository)
+            def returnedObject = new DocDocument(ID, "bar")
             documentRepository._(*_) >> returnedObject
         when:
             def result = documentHandler.saveDocument("name1", "content1")
