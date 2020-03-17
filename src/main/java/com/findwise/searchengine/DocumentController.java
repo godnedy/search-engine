@@ -19,7 +19,6 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RequestMapping("/documents")
 public class DocumentController {
 
-
     private final SearchEngine searchEngine;
 
     @GetMapping(path = "/{term}")

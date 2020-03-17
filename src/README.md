@@ -1,6 +1,6 @@
 ## How to use ##
 search engine app is a simple implementation of search engine. It uses embedded mongoDB to store information about indexed documents and terms. 
-In memory implementation of DB loads about one minute.
+In memory implementation of DB slows down the startup of applications, because this DB loads about one minute.
 
 ## Endpoints ##
  *Index document*
